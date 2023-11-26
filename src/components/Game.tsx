@@ -1,12 +1,9 @@
 import { AppShell, Flex, rem, Box, ScrollArea, Text, Modal } from '@mantine/core';
 import { Canvas } from '@react-three/fiber'
 import { HeadGame } from "./HeadGame"
-import { SideButton } from "../components/SideButton"
-import { Player } from "../components/Player"
 import { LobbyFooterButton } from "../components/LobbyFooterButton"
 import { GameFooterButton } from "../components/GameFooterButton"
 import { Carousel } from '@mantine/carousel';
-import { AvatarIcon } from './AvatarIcon';
 import { PCSelect } from './PCSelect';
 import "../index.css"
 import { useDisclosure } from '@mantine/hooks';
@@ -17,27 +14,14 @@ export function Game() {
   return (
     <>
     <AppShell
-      header={{ height: rem(200) }}
-      aside={{ width: 400, breakpoint: 'sm', collapsed: { mobile: true } }}
+      header={{ height: 80 }}
+      aside={{ width: 320, breakpoint: 'sm', collapsed: { mobile: true } }}
       footer={{height: "auto", collapsed: true}}
       padding="md"
       withBorder={false}
     >
       <AppShell.Header p="md" style={{backgroundColor: "transparent"}}>
         <HeadGame icon="./images/icon/0.png"/>
-        <ScrollArea type="always" offsetScrollbars>
-            <div className="scroll-x">
-              <Player name="fisjefiosejfiojiofsj" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-              <Player name="ｊふぁｐうぇｆｊぽいえｓｊふぉ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-              <Player name="ひいらぎ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={""} />
-              <Player name="ひいらぎ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-              <Player name="ひいらぎ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-              <Player name="ひいらぎ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-              <Player name="ひいらぎ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-              <Player name="ひいらぎ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-              <Player name="ひいらぎ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-            </div>
-        </ScrollArea>
         </AppShell.Header>
         <AppShell.Aside pl="md" pr={rem(50)} style={{backgroundColor: "transparent"}}>
           <div style={{flex:1}}/>
@@ -50,7 +34,7 @@ export function Game() {
       </AppShell.Footer>
     </AppShell>
 
-    <Modal.Root size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }}  >
+    <Modal.Root bg="blue" size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }}  >
         <Modal.Content bg="transparent" style={{zIndex:10}}>
           <Modal.Body>
           <PCSelect />

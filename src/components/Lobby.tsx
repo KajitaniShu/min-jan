@@ -20,8 +20,8 @@ export function Lobby() {
 
 
       <AppShell.Aside pl="md" py="md" style={{backgroundColor: "transparent"}}>
+        <div style={{flex:1}}/>
         <Flex
-          h={"100vh"}
           gap="sm"
           justify="flex-end"
           align="flex-end"
@@ -32,7 +32,7 @@ export function Lobby() {
         >
           <SideButton text="ルーム設定" bg="#ECE8E8" color="#2D2A29"/>
           <SideButton text="友達を招待" bg="#ECE8E8" color="#2D2A29"/>
-          <SideButton text="ゲーム開始" href="/game" bg="#5C7CFA" color="#EDF2FF"/>
+          <SideButton text="ゲーム開始" bg="#5C7CFA" color="#EDF2FF"/>
         </Flex>
       </AppShell.Aside>
       

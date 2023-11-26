@@ -20,8 +20,8 @@ export function Home() {
 
 
       <AppShell.Aside pl="md" py="md" style={{backgroundColor: "transparent"}}>
+        <div style={{flex:1}}/>
         <Flex
-          h={"100vh"}
           gap="sm"
           justify="flex-end"
           align="flex-end"

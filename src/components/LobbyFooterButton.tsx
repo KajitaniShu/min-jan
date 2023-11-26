@@ -16,7 +16,7 @@ export function LobbyFooterButton() {
             <IconShare2 />
           </ActionIcon>
       </Group>
-      <Button color="#5C7CFA" size="lg" radius="md" fullWidth>ゲーム開始</Button>
+      <Button color="#5C7CFA" size="lg" radius="xl" fullWidth>ゲーム開始</Button>
     </Stack>
   )
 }

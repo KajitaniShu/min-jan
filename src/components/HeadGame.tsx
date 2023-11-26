@@ -1,19 +1,14 @@
 import React, { useMemo } from 'react'
-import { Group, Text, ActionIcon, Drawer, Avatar, Stack } from '@mantine/core';
+import { Group, Text, ActionIcon, Drawer, ScrollArea, Stack } from '@mantine/core';
 import { IconDotsVertical, IconPencil, IconX  } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
-import { AvatarIcon } from './AvatarIcon'
+import { Player } from "../components/Player"
 import { Profile } from './Profile'
 import multiavatar from '@multiavatar/multiavatar'
 
 export function HeadGame({icon}: any) {
     const [opened, { open, close }] = useDisclosure(false);
     const avatarCode = "0123456"
-    const svgString = useMemo(() => {
-      const input =  multiavatar(avatarCode, true);
-      const svgDataBase64 = btoa(unescape(encodeURIComponent(input)));
-      return svgDataBase64
-    }, [])
 
   return (
     <>
@@ -23,6 +18,19 @@ export function HeadGame({icon}: any) {
           <IconDotsVertical />
         </ActionIcon >
       </Group>
+      <ScrollArea type="always" offsetScrollbars>
+        <div className="scroll-x">
+          <Player name="fisjefiosejfiojiofsj" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
+          <Player name="ｊふぁｐうぇｆｊぽいえｓｊふぉ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={""} />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
+        </div>
+      </ScrollArea>
       <Drawer.Root opened={opened} position='right' onClose={close} >
         <Drawer.Overlay />
         <Drawer.Content bg="#FAFAFA">
