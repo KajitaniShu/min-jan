@@ -17,23 +17,22 @@ export function Profile({avatarCode, avatarColor}: any) {
         <Text size="xl" fw="bolder" c="dark.4">ユーザー情報</Text>
       </Group>
       <Paper withBorder radius="md" shadow="xs" py="lg" px="xl">
-        <Group mt="sm" mb="xl" justify="space-between">
-          <Text>なまえ</Text>
-          <Input variant="filled" placeholder="プレイヤー1" />
-        </Group>
-        <Group mb="xl" justify="space-between">
-        <Text>アイコン</Text>
-          <Group>
+        <Text size="xs" c="dimmed" mt="md" mb="xs">ニックネーム</Text>
+        <Input size="md" variant="filled" placeholder="プレイヤー1" />
+        <Text size="xs" c="dimmed" mt="xl" mb="xs">アイコン</Text>
+        <Group mb="lg">
+          <Avatar src={`data:image/svg+xml;charset=utf-8;base64, ${svgString}`} alt="avatar" size="lg" color="blue.4" />
           <ActionIcon variant="transparent" color="rgba(0, 0, 0, 1)" aria-label="Settings">
             <IconRefresh style={{ width: '70%', height: '70%' }} stroke={1.5} />
           </ActionIcon>
-            <Avatar src={`data:image/svg+xml;charset=utf-8;base64, ${svgString}`} alt="avatar" size="lg" color="blue.4" />
-          </Group>
-        </Group>
-        <Group preventGrowOverflow mb="xl" justify="space-between">
-          <Text>背景色</Text>
           <ColorPicker format="rgb" value={avatarColor} />
         </Group>
+        
+        
+        
+        <Group justify='end'>
+          
+          </Group>
       </Paper>
       <Button mt="xl" bg="black" size="md" fullWidth>変更する</Button>
 

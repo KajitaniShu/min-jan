@@ -4,6 +4,7 @@ import { HeadGame } from "./HeadGame"
 import { SideButton } from "../components/SideButton"
 import { Player } from "../components/Player"
 import { LobbyFooterButton } from "../components/LobbyFooterButton"
+import { GameFooterButton } from "../components/GameFooterButton"
 import { Carousel } from '@mantine/carousel';
 import { AvatarIcon } from './AvatarIcon';
 import { PCSelect } from './PCSelect';
@@ -39,22 +40,24 @@ export function Game() {
         </ScrollArea>
         </AppShell.Header>
         <AppShell.Aside pl="md" pr={rem(50)} style={{backgroundColor: "transparent"}}>
-          <PCSelect />
+          <div style={{flex:1}}/>
         </AppShell.Aside>
 
       <AppShell.Main>
       </AppShell.Main>
       <AppShell.Footer bg="transparent" p="xs" pb="lg" hiddenFrom="sm">
-          <LobbyFooterButton />
+          <GameFooterButton />
       </AppShell.Footer>
     </AppShell>
 
-    <Modal.Root size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }} >
-        <Modal.Content bg="transparent">
+    <Modal.Root size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }}  >
+        <Modal.Content bg="transparent" style={{zIndex:10}}>
           <Modal.Body>
-            <Box bg="transparent" p="md" style={{border: "4px solid white", borderRadius:"20px"}}>
+          <PCSelect />
+
+            {/* <Box bg="transparent" p="md" style={{border: "3px solid white", borderRadius:"20px"}}>
               <Text c="blue.0" ta="center" fw="bold" size={rem(18)}>ああああああああああ の勝ち</Text>
-            </Box>
+            </Box> */}
             </Modal.Body>
         </Modal.Content>
       </Modal.Root>
@@ -62,7 +65,7 @@ export function Game() {
     <Canvas
       style={{
         zIndex:-1,
-        backgroundColor: "black",
+        backgroundColor: "#2C3742",
         position: 'absolute',
         top: 0,
         width: '100vw',

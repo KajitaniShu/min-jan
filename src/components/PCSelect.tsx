@@ -6,38 +6,38 @@ import { IconRefresh } from '@tabler/icons-react';
 export function PCSelect() {
 
   return (
+    <>
     <Flex
-      h={"100vh"}
       gap="sm"
-      justify="flex-end"
-      align="flex-end"
+      align="center"
       direction="column"
       wrap="wrap"
       w="100%"
+      pt="xl"
       pb={rem(100)}
     >
-      <Group justify='space-between' w="100%" >
+      <Text size="sm" fw="bold" c="#f2f2f2" mb="md">次の手を選んでください</Text>
+      <Group justify='center' w="100%" >
         <Stack>
-          <ActionIcon variant="filled" color="#ED46A5" size={rem(80)} radius="1000px" aria-label="Settings" p={rem(8)} style={{border:"4px solid #FF9EC6"}}>
+          <ActionIcon variant="filled" color="#fff" size={rem(60)} radius="1000px" aria-label="Settings" p={rem(14)}>
             <Image src="./images/gu.png"/>
           </ActionIcon>
-          <Text c="dimmed" ta="center" fw="bold" size="sm">グー</Text>
+          <Text c="#f2f2f2" ta="center" fw="bold" size="sm">グー</Text>
         </Stack>
         <Stack>
-          <ActionIcon variant="filled" color="#E9B824" size={rem(80)} radius="1000px" aria-label="Settings" p={rem(8)} style={{border:"4px solid #FFE17B"}}>
+          <ActionIcon variant="filled" color="#fff" size={rem(60)} radius="1000px" aria-label="Settings" p={rem(14)}>
             <Image src="./images/choki.png"/>
           </ActionIcon>
-          <Text c="dimmed" ta="center" fw="bold" size="sm">チョキ</Text>
+          <Text c="#f2f2f2" ta="center" fw="bold" size="sm">チョキ</Text>
         </Stack>
         <Stack>
-          <ActionIcon variant="filled" color="#3BD4CA" size={rem(80)} radius="1000px" aria-label="Settings" p={rem(8)} style={{border:"4px solid #BFF5F3"}}>
+          <ActionIcon variant="filled" color="#fff" size={rem(60)} radius="1000px" aria-label="Settings" p={rem(14)}>
             <Image src="./images/pa.png"/>
           </ActionIcon>
-          <Text c="dimmed" ta="center" fw="bold" size="sm">パー</Text>
+          <Text c="#f2f2f2" ta="center" fw="bold" size="sm">パー</Text>
         </Stack>
       </Group>
-      <Button mt="md" bg="#5C7CFA" color="#EDF2FF" size="md" radius="md" fullWidth>決定</Button>
     </Flex>
-    
+    </>
   )
 }
