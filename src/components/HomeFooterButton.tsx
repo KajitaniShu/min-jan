@@ -11,7 +11,7 @@ export function HomeFooterButton() {
             <IconQuestionMark />
           </ActionIcon>
       </Group>
-      <Button color="#5C7CFA" size="lg" radius="md" fullWidth>ルームを作る</Button>
+      <Button color="#5C7CFA" size="lg" radius="md" component="a" href="/room" fullWidth>ルームを作る</Button>
     </Stack>
   )
 }

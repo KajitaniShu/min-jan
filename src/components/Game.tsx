@@ -49,11 +49,11 @@ export function Game() {
       </AppShell.Footer>
     </AppShell>
 
-    <Modal.Root size="xs" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }} >
+    <Modal.Root size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }} >
         <Modal.Content bg="transparent">
           <Modal.Body>
             <Box bg="transparent" p="md" style={{border: "4px solid white", borderRadius:"20px"}}>
-              <Text c="blue.0" ta="center" fw="bold" size={rem(30)}>あああああああああああ の勝ち</Text>
+              <Text c="blue.0" ta="center" fw="bold" size={rem(18)}>ああああああああああ の勝ち</Text>
             </Box>
             </Modal.Body>
         </Modal.Content>
