@@ -13,8 +13,8 @@ export function HeadGame({icon}: any) {
   return (
     <>
       <Group justify="space-between" preventGrowOverflow={true}>
-        <Text fw={700} c="#ECE8E8" size="lg">勝ち抜け戦</Text>
-        <ActionIcon  radius="lg" size="lg" variant="white" color="dark" onClick={open}>
+        <Text fw={700} c="dark" size="lg">勝ち抜け戦</Text>
+        <ActionIcon  radius="lg" size="lg" variant="white" bg="gray.3" color="dark" onClick={open}>
           <IconDotsVertical />
         </ActionIcon >
       </Group>

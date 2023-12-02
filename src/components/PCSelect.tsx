@@ -16,27 +16,10 @@ export function PCSelect() {
       pt="xl"
       pb={rem(100)}
     >
-      <Text size="sm" fw="bold" c="#f2f2f2" mb="md">次の手を選んでください</Text>
-      <Group justify='center' w="100%" >
-        <Stack>
-          <ActionIcon variant="filled" color="#fff" size={rem(60)} radius="1000px" aria-label="Settings" p={rem(14)}>
-            <Image src="./images/gu.png"/>
-          </ActionIcon>
-          <Text c="#f2f2f2" ta="center" fw="bold" size="sm">グー</Text>
-        </Stack>
-        <Stack>
-          <ActionIcon variant="filled" color="#fff" size={rem(60)} radius="1000px" aria-label="Settings" p={rem(14)}>
-            <Image src="./images/choki.png"/>
-          </ActionIcon>
-          <Text c="#f2f2f2" ta="center" fw="bold" size="sm">チョキ</Text>
-        </Stack>
-        <Stack>
-          <ActionIcon variant="filled" color="#fff" size={rem(60)} radius="1000px" aria-label="Settings" p={rem(14)}>
-            <Image src="./images/pa.png"/>
-          </ActionIcon>
-          <Text c="#f2f2f2" ta="center" fw="bold" size="sm">パー</Text>
-        </Stack>
-      </Group>
+      <Text size="sm" fw="bold" c="dark" mb="md">次の手を選んでください</Text>
+      <Button variant="filled" radius="xl" color="gray.9" fullWidth>グー</Button>
+      <Button variant="filled" radius="xl" color="gray.4" fullWidth>チョキ</Button>
+      <Button variant="filled" radius="xl" color="gray.4" fullWidth>パー</Button>
     </Flex>
     </>
   )

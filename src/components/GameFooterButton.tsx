@@ -1,21 +1,16 @@
 import React from 'react'
 import { ActionIcon, Button, Group, Stack, rem } from '@mantine/core';
 import { IconQuestionMark, IconShare2 } from '@tabler/icons-react';
+import { Paper, Text } from '@mantine/core';
 
 export function GameFooterButton() {
 
   return (
-    <Stack>
-      <Group gap="8" justify='flex-end' w="100%">
-          <ActionIcon radius="1000px" variant="white" h={"45"} w={"45"} color="dark">
-            <IconQuestionMark />
-          </ActionIcon>
-      </Group>
-      <Group gap="8" justify='flex-end' w="100%">
-          <ActionIcon radius="1000px" variant="white" h={"45"} w={"45"} color="dark">
-            <IconShare2 />
-          </ActionIcon>
-      </Group>
-    </Stack>
+    <Paper color="white" radius="lg" p="md">
+    <Text size="sm" fw="bold" c="dark" mb="md">次の手を選んでください</Text>
+      <Button variant="filled" radius="xl" mb="xs" color="gray.9" fullWidth>グー</Button>
+      <Button variant="filled" radius="xl" mb="xs" color="gray.4" fullWidth>チョキ</Button>
+      <Button variant="filled" radius="xl" mb="xs" color="gray.4" fullWidth>パー</Button>
+      </Paper>
   )
 }

@@ -1,16 +1,18 @@
-import { AppShell, Flex, rem, Box, ScrollArea, Text, Modal } from '@mantine/core';
+import { AppShell, Box, rem, ScrollArea, Text, Modal, Center } from '@mantine/core';
 import { Canvas } from '@react-three/fiber'
 import { HeadGame } from "./HeadGame"
 import { LobbyFooterButton } from "../components/LobbyFooterButton"
+import { GameScene } from "../scenes/GameScene"
 import { GameFooterButton } from "../components/GameFooterButton"
-import { Carousel } from '@mantine/carousel';
 import { PCSelect } from './PCSelect';
 import "../index.css"
 import { useDisclosure } from '@mantine/hooks';
+import { OrbitControls, Environment, SpotLight, ContactShadows } from '@react-three/drei'
 
 
 export function Game() {
   const [opened, { open, close }] = useDisclosure(true);
+
   return (
     <>
     <AppShell
@@ -25,6 +27,7 @@ export function Game() {
         </AppShell.Header>
         <AppShell.Aside pl="md" pr={rem(50)} style={{backgroundColor: "transparent"}}>
           <div style={{flex:1}}/>
+          <PCSelect />
         </AppShell.Aside>
 
       <AppShell.Main>
@@ -33,31 +36,32 @@ export function Game() {
           <GameFooterButton />
       </AppShell.Footer>
     </AppShell>
-
     <Modal.Root bg="blue" size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }}  >
         <Modal.Content bg="transparent" style={{zIndex:10}}>
           <Modal.Body>
-          <PCSelect />
-
-            {/* <Box bg="transparent" p="md" style={{border: "3px solid white", borderRadius:"20px"}}>
-              <Text c="blue.0" ta="center" fw="bold" size={rem(18)}>ああああああああああ の勝ち</Text>
-            </Box> */}
-            </Modal.Body>
+            <Text c="white" ta="center" fw="bolder" size={rem(35)}>あいこ</Text>
+          </Modal.Body>
         </Modal.Content>
-      </Modal.Root>
-
+      </Modal.Root> 
+    
+    
     <Canvas
+      flat
+      camera={{ position: [0, 20, 40] }}
       style={{
         zIndex:-1,
-        backgroundColor: "#2C3742",
+        backgroundColor: "#B7C4CF",
         position: 'absolute',
         top: 0,
         width: '100vw',
         height: '100vh'
       }}
     >
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
+      <OrbitControls/>
+      <ambientLight intensity={2}/>
+      <directionalLight position={[2, 10, 10]}/>
+      <Environment preset="city" />
+      <GameScene />
     </Canvas>
     </>
   )

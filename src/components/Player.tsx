@@ -6,7 +6,7 @@ import { AvatarIcon } from './AvatarIcon'
 export function Player({name, avatarCode, avatarColor, anser}: any) {
   return (
     <Stack gap="xs" align="center" w={rem(50)} mx="xs">
-      <Text ta="center" size={rem(10)} w="100%" fw="bolder" lineClamp={1} c="gray.0">
+      <Text ta="center" size={rem(10)} w="100%" fw="bolder" lineClamp={1} c="dark">
         {name}
       </Text>
       <AvatarIcon avatarCode={avatarCode}  avatarColor={avatarColor} size="lg" />
