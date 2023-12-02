@@ -1,10 +1,9 @@
-import React, {useMemo} from 'react'
+import React, { useState } from 'react'
 import { Divider, Group, Text, Stack, Flex, Image, ActionIcon, ColorPicker, Button, Anchor, rem} from '@mantine/core';
-import multiavatar from '@multiavatar/multiavatar'
-import { IconRefresh } from '@tabler/icons-react';
 
 export function PCSelect() {
-
+  const [hands, setHands] = useState<string>("gu");
+  
   return (
     <>
     <Flex
@@ -16,10 +15,10 @@ export function PCSelect() {
       pt="xl"
       pb={rem(100)}
     >
-      <Text size="sm" fw="bold" c="dark" mb="md">次の手を選んでください</Text>
-      <Button variant="filled" radius="xl" color="gray.9" fullWidth>グー</Button>
-      <Button variant="filled" radius="xl" color="gray.4" fullWidth>チョキ</Button>
-      <Button variant="filled" radius="xl" color="gray.4" fullWidth>パー</Button>
+      <Text size="sm" fw="bold" c="dark" mb="sm">次の手を選んでください</Text>
+        <Button variant="filled" radius="xl" color={hands === "gu"    ? "gray.9" : "gray.4"} fullWidth onClick={()=>setHands("gu")}>グー</Button>
+        <Button variant="filled" radius="xl" color={hands === "choki" ? "gray.9" : "gray.4"} fullWidth onClick={()=>setHands("choki")}>チョキ</Button>
+        <Button variant="filled" radius="xl" color={hands === "pa"    ? "gray.9" : "gray.4"} fullWidth onClick={()=>setHands("pa")}>パー</Button>
     </Flex>
     </>
   )
