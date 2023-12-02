@@ -36,11 +36,6 @@ export function GameFooterButton() {
           p="xl"
           bg="white"
         >
-          <Group justify="flex-end" w="100%" >
-              <ActionIcon variant="filled" size="md" color="gray.9" radius="xl" aria-label="Settings" onClick={close}>
-                <IconX  style={{ width: '70%', height: '70%' }} stroke={1.5} />
-              </ActionIcon>
-            </Group>
           <Text size="sm" fw="bold" c="dark" mb="md">次の手を選んでください</Text>
           
           
