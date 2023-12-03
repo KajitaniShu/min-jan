@@ -11,7 +11,7 @@ import { OrbitControls, Environment, SpotLight, ContactShadows } from '@react-th
 
 
 export function Game() {
-  const [opened, { open, close }] = useDisclosure(true);
+  const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <>
@@ -29,11 +29,10 @@ export function Game() {
           <div style={{flex:1}}/>
           <PCSelect />
         </AppShell.Aside>
-
       <AppShell.Main>
       </AppShell.Main>
       <AppShell.Footer bg="transparent" p="xs" pb="lg" hiddenFrom="sm">
-          <GameFooterButton />
+        <GameFooterButton />
       </AppShell.Footer>
     </AppShell>
     <Modal.Root bg="blue" size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }}  >
@@ -50,7 +49,7 @@ export function Game() {
       camera={{ position: [0, 20, 40] }}
       style={{
         zIndex:-1,
-        backgroundColor: "#B7C4CF",
+        backgroundColor:"#B7C4CF",
         position: 'absolute',
         top: 0,
         width: '100vw',

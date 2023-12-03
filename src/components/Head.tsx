@@ -29,7 +29,7 @@ export function Head({icon}: any) {
           <IconDotsVertical />
         </ActionIcon >
       </Group>
-      <Drawer.Root opened={opened} position='right' onClose={close} style={{zIndex:100}} >
+      <Drawer.Root opened={opened} position='right' onClose={close} style={{zIndex:100}}>
         <Drawer.Overlay />
         <Drawer.Content bg="#FAFAFA">
           <Drawer.Header bg="#FAFAFA">

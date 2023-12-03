@@ -20,15 +20,14 @@ export function HeadGame({icon}: any) {
       </Group>
       <ScrollArea type="always" offsetScrollbars>
         <div className="scroll-x">
-          <Player name="fisjefiosejfiojiofsj" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-          <Player name="ｊふぁｐうぇｆｊぽいえｓｊふぉ" avatarCode="wdadadwaw" avatarColor="blue.6" anser={null} />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={""} />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6" anser={null} />
+          <Player name="fisjefiosejfiojiofsj" avatarCode="wdadadwaw" avatarColor="blue.6"  />
+          <Player name="ｊふぁｐうぇｆｊぽいえｓｊふぉ" avatarCode="wdadadwaw" avatarColor="blue.6"  />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
+          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
         </div>
       </ScrollArea>
       <Drawer.Root opened={opened} position='right' onClose={close} >

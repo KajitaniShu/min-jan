@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-import { ActionIcon, Image, Group, Stack, Drawer, Paper, Button, Text, rem } from '@mantine/core';
-import { IconQuestionMark, IconShare2 } from '@tabler/icons-react';
+import { ActionIcon, Image, Group, Stack, Drawer, Paper } from '@mantine/core';
+import { IconQuestionMark, IconShare2, IconMessage } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { IconX } from '@tabler/icons-react';
+import { Chat } from "../components/Chat"
+import { HandsButton } from "../components/HandsButton"
+
 
 export function GameFooterButton() {
   const [hands, setHands] = useState<string>("gu");
+  const [drawerMode, setDrawerMode] = useState<string>("chat");
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -22,29 +26,35 @@ export function GameFooterButton() {
           </ActionIcon>
       </Group>
       <Group gap="8" justify='flex-end' w="100%">
-          <ActionIcon radius="1000px" variant="white" h={"45"} w={"45"} color="dark" onClick={open}>
+          <ActionIcon radius="1000px" variant="white" h={"45"} w={"45"} color="dark" onClick={()=> {setDrawerMode("chat");  open();}}>
+            <IconMessage />
+          </ActionIcon>
+      </Group>
+      <Group gap="8" justify='flex-end' w="100%">
+          <ActionIcon radius="1000px" variant="white" h={"45"} w={"45"} color="dark" onClick={()=> {setDrawerMode("hand");  open();}}>
             <Image src={"./images/svg/"+ hands + ".svg"} />
           </ActionIcon>
       </Group>
     </Stack>
+    <Drawer.Root size={drawerMode === "hand" ? "xs" : "80vh"} opened={opened} onClose={close} position="bottom">
+    
+      {drawerMode === "chat" && 
+        <>
+          <Chat close={close}/>
+        </>
+      }
+      {drawerMode === "hand" && 
+        <Drawer.Content bg="transparent" style={{borderRadius:"15px 15px 0 0" }} >
+        <Drawer.Body>
+        <Paper bg="white" radius="lg" p="lg">
+            
 
-    <Drawer.Root size="xs" opened={opened} onClose={close} position="bottom">
-    <Drawer.Content bg="transparent">
-      <Drawer.Body>
-        <Paper
-          radius="lg"
-          p="xl"
-          bg="white"
-        >
-          <Text size="sm" fw="bold" c="dark" mb="md">次の手を選んでください</Text>
-          
-          
-          <Button variant="filled" radius="xl" mb="sm" color={hands === "gu"    ? "gray.9" : "gray.4"} fullWidth onClick={()=> {close(); setHands("gu")}}>グー</Button>
-          <Button variant="filled" radius="xl" mb="sm" color={hands === "choki" ? "gray.9" : "gray.4"} fullWidth onClick={()=> {close(); setHands("choki")}}>チョキ</Button>
-          <Button variant="filled" radius="xl" mb="sm" color={hands === "pa"    ? "gray.9" : "gray.4"} fullWidth onClick={()=> {close(); setHands("pa")}}>パー</Button>
+            
+              <HandsButton hands={hands} setHands={setHands} close={close} />
         </Paper>
-      </Drawer.Body>
-    </Drawer.Content>
+        </Drawer.Body>
+        </Drawer.Content>
+      }
   </Drawer.Root>
   </>
   )
