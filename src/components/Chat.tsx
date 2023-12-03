@@ -1,23 +1,32 @@
 import React from 'react'
-import { Button, ActionIcon, Drawer, Paper, TextInput, rem, Group, CloseButton, Stack, Avatar, ScrollArea, Text } from '@mantine/core'
+import { Button, ActionIcon, Drawer, Paper, TextInput, rem, Group, Flex, Stack, Avatar, ScrollArea, Text } from '@mantine/core'
 import { Notifications, notifications  } from '@mantine/notifications';
 import classes from '../styles/notification.module.css';
 import { IconSend } from '@tabler/icons-react';
 import { Scroll } from '@react-three/drei';
-export function Chat({close}:any) {
+export function Chat({opened, close}:any) {
   return (
     <>
-    <Drawer.Content bg="white" style={{borderRadius:"15px 15px 0 0" }} >
+    <Drawer.Root size={"lg"} opened={opened} onClose={close} position="bottom">
+      
+    <Drawer.Content bg="white" >
+      <Drawer.Header w="100%" py="xs" px="md">
+      <Flex
+        w="100%"
+        justify="flex-start"
+        align="flex-start"
+        direction="column"
+      >
+          <Drawer.CloseButton />
+          <TextInput  mb="xl" size="md" mt="md" w="100%"
+            rightSection={
+              <ActionIcon size={32} radius="sm" color="dark" variant="filled">
+                <IconSend style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+              </ActionIcon>
+            }/>
+      </Flex>
+      </Drawer.Header>
       <Drawer.Body p="lg">
-        <Group justify="end">
-          <CloseButton onClick={close}/>
-        </Group>
-        <TextInput  mb="xl" size="md" mt="md"  
-          rightSection={
-            <ActionIcon size={32} radius="sm" color="dark" variant="filled">
-              <IconSend style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-            </ActionIcon>
-          }/>
         <Group>
         {/* <Button
           color="dark"
@@ -35,7 +44,6 @@ export function Chat({close}:any) {
           Default notification
         </Button> */}
         </Group>
-          <ScrollArea h="60vh" offsetScrollbars>
         <Stack>
           <Paper p="md" radius="md" bg="gray.0">
             <Group>
@@ -134,9 +142,9 @@ export function Chat({close}:any) {
             <Text ml={rem(50)} mt="xs" size="xs">ああああああああああああああああああああああああああああああ</Text>
           </Paper>
         </Stack>
-        </ScrollArea>
       </Drawer.Body>
     </Drawer.Content>
+    </Drawer.Root>
     </>
   )
 }

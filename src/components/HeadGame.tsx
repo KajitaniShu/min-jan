@@ -18,7 +18,7 @@ export function HeadGame({icon}: any) {
           <IconDotsVertical />
         </ActionIcon >
       </Group>
-      <ScrollArea type="always" offsetScrollbars>
+      <ScrollArea offsetScrollbars>
         <div className="scroll-x">
           <Player name="fisjefiosejfiojiofsj" avatarCode="wdadadwaw" avatarColor="blue.6"  />
           <Player name="ｊふぁｐうぇｆｊぽいえｓｊふぉ" avatarCode="wdadadwaw" avatarColor="blue.6"  />

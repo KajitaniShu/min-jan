@@ -36,26 +36,26 @@ export function GameFooterButton() {
           </ActionIcon>
       </Group>
     </Stack>
-    <Drawer.Root size={drawerMode === "hand" ? "xs" : "80vh"} opened={opened} onClose={close} position="bottom">
+    
     
       {drawerMode === "chat" && 
         <>
-          <Chat close={close}/>
+          <Chat opened={opened} close={close}/>
         </>
       }
       {drawerMode === "hand" && 
+
+
+      <Drawer.Root opened={opened} onClose={close} position="bottom" size="xs">
         <Drawer.Content bg="transparent" style={{borderRadius:"15px 15px 0 0" }} >
         <Drawer.Body>
         <Paper bg="white" radius="lg" p="lg">
-            
-
-            
-              <HandsButton hands={hands} setHands={setHands} close={close} />
+        <HandsButton hands={hands} setHands={setHands} close={close} />
         </Paper>
         </Drawer.Body>
         </Drawer.Content>
+        </Drawer.Root>
       }
-  </Drawer.Root>
   </>
   )
 }
