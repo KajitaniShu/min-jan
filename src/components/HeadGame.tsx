@@ -6,7 +6,7 @@ import { Player } from "../components/Player"
 import { Profile } from './Profile'
 import multiavatar from '@multiavatar/multiavatar'
 
-export function HeadGame({icon}: any) {
+export function HeadGame({memberData, userData}: any) {
     const [opened, { open, close }] = useDisclosure(false);
     const avatarCode = "0123456"
 
@@ -20,14 +20,10 @@ export function HeadGame({icon}: any) {
       </Group>
       <ScrollArea offsetScrollbars>
         <div className="scroll-x">
-          <Player name="fisjefiosejfiojiofsj" avatarCode="wdadadwaw" avatarColor="blue.6"  />
-          <Player name="ｊふぁｐうぇｆｊぽいえｓｊふぉ" avatarCode="wdadadwaw" avatarColor="blue.6"  />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
-          <Player name="ひいらぎ" avatarCode={avatarCode} avatarColor="blue.6"  />
+          
+          {memberData && memberData.map((data: any, index: any) => {return (
+              <Player name={data.name}  color="blue.6" key={index} />
+          )})}
         </div>
       </ScrollArea>
       <Drawer.Root opened={opened} position='right' onClose={close} >
@@ -41,7 +37,7 @@ export function HeadGame({icon}: any) {
             </Group>
           </Drawer.Header>
           <Drawer.Body>
-            <Profile avatarCode={avatarCode} />
+            <Profile userData={userData}/>
           </Drawer.Body>
         </Drawer.Content>
       </Drawer.Root>

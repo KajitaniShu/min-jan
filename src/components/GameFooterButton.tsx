@@ -32,7 +32,7 @@ export function GameFooterButton() {
       </Group>
       <Group gap="8" justify='flex-end' w="100%">
           <ActionIcon radius="1000px" variant="white" h={"45"} w={"45"} color="dark" onClick={()=> {setDrawerMode("hand");  open();}}>
-            <Image src={"./images/svg/"+ hands + ".svg"} />
+            <Image src={"/images/svg/"+ hands + ".svg"} />
           </ActionIcon>
       </Group>
     </Stack>

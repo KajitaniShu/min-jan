@@ -3,8 +3,14 @@ import { Canvas } from '@react-three/fiber'
 import { HeadGame } from "./HeadGame"
 import { SideButton } from "../components/SideButton"
 import { LobbyFooterButton } from "../components/LobbyFooterButton"
+import { db } from '../config/firebase'
+import { where, collection, query } from 'firebase/firestore';
+import { useDocumentDataOnce, useCollectionDataOnce } from 'react-firebase-hooks/firestore';
+import { useAuthState, useSignInWithFacebook } from 'react-firebase-hooks/auth';
 
-export function Lobby() {
+export function Lobby({roomData, userData}: any) {
+  const [memberData] = useCollectionDataOnce(query(collection(db, "users"),where('uuid', 'in', roomData[0].members)));
+  
   return (
     <>
     <AppShell
@@ -15,7 +21,7 @@ export function Lobby() {
       withBorder={false}
     >
       <AppShell.Header p="md" style={{backgroundColor: "transparent"}}>
-        <HeadGame icon="./images/icon/0.png"/>
+        <HeadGame icon="./images/icon/0.png" memberData={memberData} userData={userData}/>
       </AppShell.Header>
 
 

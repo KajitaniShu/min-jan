@@ -2,8 +2,8 @@ import { useGLTF, Shadow } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
 
 export function GameCharacter({character, userHand, win, ...props}: any) {
-  const model = useGLTF("./models/characters/" + character + ".glb");
-  const hand = useGLTF("./models/" + userHand + ".glb");
+  const model = useGLTF("/models/characters/" + character + ".glb");
+  const hand = useGLTF("/models/" + userHand + ".glb");
   const { positionY, shaderScale } = useSpring({
     positionY: 0.5,
     shaderScale: 2.6,

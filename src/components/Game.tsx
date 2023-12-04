@@ -8,11 +8,16 @@ import { PCSelect } from './PCSelect';
 import "../index.css"
 import { useDisclosure } from '@mantine/hooks';
 import { OrbitControls, Environment, SpotLight, ContactShadows } from '@react-three/drei'
+import { where, collection, query } from 'firebase/firestore';
+import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
+import { db, auth } from '../config/firebase'
 
 
-export function Game() {
+export function Game({roomData, userData, roomId}: any) {
   const [opened, { open, close }] = useDisclosure(false);
-
+  const [memberData] = useCollectionDataOnce(query(collection(db, "users"),where('uuid', 'in', roomData[0].members)));
+  const [lastGameData, loading] = useCollectionDataOnce(query(collection(db, "games"), where("uid", "==", String(roomId)+"-r1")));
+  
   return (
     <>
     <AppShell
@@ -23,7 +28,7 @@ export function Game() {
       withBorder={false}
     >
       <AppShell.Header p="md" style={{backgroundColor: "transparent"}}>
-        <HeadGame icon="./images/icon/0.png"/>
+        <HeadGame icon="./images/icon/0.png" memberData={memberData} userData={userData}/>
         </AppShell.Header>
         <AppShell.Aside pl="md" pr={rem(50)} style={{backgroundColor: "transparent"}}>
           <div style={{flex:1}}/>
@@ -60,7 +65,7 @@ export function Game() {
       <ambientLight intensity={2}/>
       <directionalLight position={[2, 10, 10]}/>
       <Environment preset="city" />
-      <GameScene />
+      <GameScene lastGameData={lastGameData}/>
     </Canvas>
     </>
   )

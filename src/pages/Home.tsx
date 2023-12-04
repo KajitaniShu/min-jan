@@ -5,20 +5,15 @@ import { SideButton } from "../components/SideButton"
 import { HomeFooterButton } from "../components/HomeFooterButton"
 
 export function Home() {
+  
   return (
     <>
     <AppShell
-      header={{ height: 80 }}
       aside={{ width: 320, breakpoint: 'sm', collapsed: { mobile: true } }}
       footer={{height: "auto", collapsed: true}}
       padding="md"
       withBorder={false}
     >
-      <AppShell.Header p="md" style={{backgroundColor: "transparent"}}>
-        <Head icon="./images/icon/0.png"/>
-      </AppShell.Header>
-
-
       <AppShell.Aside pl="md" py="md" style={{backgroundColor: "transparent"}}>
         <div style={{flex:1}}/>
         <Flex

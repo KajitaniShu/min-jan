@@ -7,15 +7,20 @@ import { Html,useHelper, OrbitControls, Environment, Shadow } from '@react-three
 import { GameCharacter } from "../components/GameCharacter"
 import { MantineProvider, createTheme } from '@mantine/core';
 
-export function GameScene() {
-
+export function GameScene({lastGameData}:any) {
+  const position=[
+    [3, 0, 1],
+    [-3, 0, 6],
+    [-4, 0, -3],
+    [5, 0, -4],
+    [-2, 0, -6]
+  ]
+  const hand = ["gu", "choki", "pa"]
   return (
     <>
-      <GameCharacter character={"002"} userHand={"gu"} position={[3, 0, 1]} win={true}/>
-      <GameCharacter character={"002"} userHand={"choki"} position={[-3, 0, 6]} win={false}/>
-      <GameCharacter character={"002"} userHand={"gu"} position={[-10, 0, -3]} win={false}/>
-      <GameCharacter character={"002"} userHand={"pa"} position={[7, 0, -4]} win={false}/>
-      <GameCharacter character={"002"} userHand={"choki"} position={[-2, 0, -6]} win={true}/>
+      {lastGameData && lastGameData[0].hand.map((data: any, index: any) => {return (
+        <GameCharacter character={"002"} userHand={hand[data]} position={position[index]} win={false} key={index} />
+      )})}
     </>
   )
 }

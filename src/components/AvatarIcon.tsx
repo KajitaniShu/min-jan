@@ -2,17 +2,12 @@ import React, { useMemo } from 'react'
 import { Avatar } from '@mantine/core';
 import multiavatar from '@multiavatar/multiavatar'
 
-export function AvatarIcon({avatarCode, avatarColor, size, ...props}: any) {
-  const svgString = useMemo(() => {
-    const input =  multiavatar(avatarCode, true);
-    const svgDataBase64 = btoa(unescape(encodeURIComponent(input)));
-    return svgDataBase64
-  }, [avatarCode])
+export function AvatarIcon({color, size, ...props}: any) {
+  
   return (
     <Avatar 
     {...props}
-      src={`data:image/svg+xml;charset=utf-8;base64, ${svgString}`} 
-      bg={avatarColor}
+      bg={color}
       alt="icon" 
       variant="light" 
       radius="xl" 
