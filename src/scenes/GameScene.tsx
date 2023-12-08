@@ -11,7 +11,7 @@ export function GameScene({lastGameData}:any) {
   const position=[
     [3, 0, 1],
     [-3, 0, 6],
-    [-4, 0, -3],
+    [-8, 0, 0],
     [5, 0, -4],
     [-2, 0, -6]
   ]
@@ -19,7 +19,7 @@ export function GameScene({lastGameData}:any) {
   return (
     <>
       {lastGameData && lastGameData[0].hand.map((data: any, index: any) => {return (
-        <GameCharacter character={"002"} userHand={hand[data]} position={position[index]} win={false} key={index} />
+        <GameCharacter character={"00"+String(index+2)} userHand={hand[data]} position={position[index]} win={true} key={index} />
       )})}
     </>
   )
