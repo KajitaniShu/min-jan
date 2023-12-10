@@ -1,7 +1,9 @@
-import { useGLTF, Shadow } from '@react-three/drei'
+import { useGLTF, Shadow, Html } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
+import { Box, MantineProvider, Text } from '@mantine/core';
 
-export function GameCharacter({character, userHand, win, ...props}: any) {
+export function GameCharacter({character, userHand, win, name, ...props}: any) {
+  
   const model = useGLTF("/models/characters/" + character + ".glb");
   const hand = useGLTF("/models/" + userHand + ".glb");
   const { positionY, shaderScale } = useSpring({
@@ -16,11 +18,15 @@ export function GameCharacter({character, userHand, win, ...props}: any) {
     loop: { reverse: true }
   })
 
-
   return (
     <>
       <group {...props}>
       <animated.group position-y={win ? positionY : 0}>
+        <Html distanceFactor={14} transform sprite occlude position={[0, 6, 0]}>
+          <MantineProvider>
+            <Text c="white" fw="bold">{name}</Text>
+          </MantineProvider>
+        </Html>
         {model && model.scene && 
         <mesh receiveShadow castShadow  material-envMapIntensity={0.25} >
           <primitive 
@@ -39,7 +45,7 @@ export function GameCharacter({character, userHand, win, ...props}: any) {
         </mesh>
       </animated.group>
       <animated.group scale={win ? shaderScale : 3} >
-        <Shadow fog  opacity={0.3} />
+        <Shadow fog  opacity={0.4} />
       </animated.group>
       </group>
     </>

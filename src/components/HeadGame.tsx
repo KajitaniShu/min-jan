@@ -8,21 +8,21 @@ import multiavatar from '@multiavatar/multiavatar'
 
 export function HeadGame({memberData, userData}: any) {
     const [opened, { open, close }] = useDisclosure(false);
-    const avatarCode = "0123456"
+    const color = ["#362FD9", "#F11A7B", "#105E62", "#795548", "#0D7377", "#6500ff", "#9a00ff"];
+    
 
   return (
     <>
       <Group justify="space-between" preventGrowOverflow={true}>
-        <Text fw={700} c="dark" size="lg">勝ち抜け戦</Text>
-        <ActionIcon  radius="lg" size="lg" variant="white" bg="gray.3" color="dark" onClick={open}>
+        <Text fw={700} c="white" ml="sm" size="lg">勝ち抜け戦</Text>
+        <ActionIcon  radius="lg" size="lg" variant="white" color="dark" onClick={open}>
           <IconDotsVertical />
         </ActionIcon >
       </Group>
       <ScrollArea offsetScrollbars>
         <div className="scroll-x">
-          
           {memberData && memberData.map((data: any, index: any) => {return (
-              <Player name={data.name}  color="blue.6" key={index} />
+            <Player name={data.name} color={color[index]} src={"/models/characters/001"/*+String(index+1)*/ + ".glb"} key={index}/>
           )})}
         </div>
       </ScrollArea>

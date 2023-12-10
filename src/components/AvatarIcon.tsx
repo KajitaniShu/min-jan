@@ -1,18 +1,29 @@
-import React, { useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Avatar } from '@mantine/core';
-import multiavatar from '@multiavatar/multiavatar'
+import { getGltfImage } from '../config/getGltfImage'
 
-export function AvatarIcon({color, size, ...props}: any) {
-  
+export function AvatarIcon({color, size, src, ...props}: any) {
+  const [base64Image, setBase64Image] = useState(null);
+
+    useEffect(() => {
+      getGltfImage(src).then((image:any) => {
+            setBase64Image(image);
+        }).catch(error => {
+            console.error('An error occurred:', error);
+        });
+    }, [src]);
+
   return (
     <Avatar 
-    {...props}
-      bg={color}
+      {...props}
+      src={base64Image}
+      color={color}
+      
       alt="icon" 
-      variant="light" 
-      radius="xl" 
+      variant="white"
+      radius="xl"
       size={size}
-      style={{border: "2px solid #ECE8E8"}}
+      style={{border: "2px solid #EAEAEA"}}
     />
   )
 }
