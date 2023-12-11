@@ -18,7 +18,6 @@ export function AvatarIcon({color, size, src, ...props}: any) {
       {...props}
       src={base64Image}
       color={color}
-      
       alt="icon" 
       variant="white"
       radius="xl"

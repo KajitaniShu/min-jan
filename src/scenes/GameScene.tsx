@@ -10,7 +10,7 @@ import { MantineProvider, createTheme } from '@mantine/core';
 import { Loading3D } from '../components/Loading3D';
 import { HandSelect } from '../components/HandSelect';
 
-export function GameScene({roomData, lastGameData}:any) {
+export function GameScene({roomData, lastGameData, memberData}:any) {
   const [state, setState] = useState<String>("loading");
   const position=[
     [3, 0, 1],
@@ -36,12 +36,17 @@ export function GameScene({roomData, lastGameData}:any) {
     }
   },[roomData])
 
+
   return (
     <>
     
-
-    {state === "result" && lastGameData && Object.entries(lastGameData?.[0].users).map(([userId, userData]:any, index) => {
-      return( <GameCharacter character={/*"00"+String(index+1)*/ "001"} name={"ひいらぎ"} userHand={userData.choice === null ? "null" : hand[userData.choice]} position={position[index]} win={true} key={index} />)
+    <Html center  distanceFactor={50} transform sprite occlude position={[0, 15, 5]}>
+      <MantineProvider>
+        <Text c="white" ta="center" fw="bold">ひいらぎの勝ち</Text>
+      </MantineProvider>
+    </Html>
+    {state === "result" && memberData && lastGameData && Object.entries(lastGameData?.[0].users).map(([userId, userData]:any, index) => {
+      return( <GameCharacter character={/*"00"+String(index+1)*/ "001"} name={memberData.find((e:any) => e.uuid === userId).name} userHand={userData.choice === null ? "null" : hand[userData.choice]} position={position[index]} win={true} key={index} />)
     })
     }
     {state === "waiting" && 

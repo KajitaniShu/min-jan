@@ -63,7 +63,7 @@ export function Game({roomData, userData, roomId}: any) {
       }}
     >
       <Stage adjustCamera={false} environment={"city"} intensity={5}>
-        <GameScene roomData={roomData} lastGameData={lastGameData}/>
+        <GameScene roomData={roomData} lastGameData={lastGameData} memberData={memberData}/>
       </Stage>
     </Canvas>
     </>
