@@ -28,7 +28,7 @@ export function Game({roomData, userData, roomId}: any) {
       withBorder={false}
     >
       <AppShell.Header p="md" style={{backgroundColor: "transparent"}}>
-        <HeadGame icon="./images/icon/0.png" memberData={memberData} userData={userData}/>
+        <HeadGame icon="./images/icon/0.png" memberData={memberData} userData={userData} type={roomData?.[0].type}/>
         </AppShell.Header>
         <AppShell.Aside pl="md" pr={rem(50)} style={{backgroundColor: "transparent"}}>
           <div style={{flex:1}}/>

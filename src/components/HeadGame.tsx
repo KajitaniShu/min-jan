@@ -1,20 +1,23 @@
 import React, { useMemo } from 'react'
 import { Group, Text, ActionIcon, Drawer, ScrollArea, Stack } from '@mantine/core';
-import { IconDotsVertical, IconPencil, IconX  } from '@tabler/icons-react';
+import { IconDotsVertical, IconChevronsRight, IconX  } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { Player } from "../components/Player"
 import { Profile } from './Profile'
 import multiavatar from '@multiavatar/multiavatar'
 
-export function HeadGame({memberData, userData}: any) {
+export function HeadGame({memberData, userData, type}: any) {
     const [opened, { open, close }] = useDisclosure(false);
     const color = ["#362FD9", "#F11A7B", "#105E62", "#795548", "#0D7377", "#6500ff", "#9a00ff"];
-    
-
+    const gameType = ["1位決定戦", "敗者決定戦"]
+    console.log(type)
   return (
     <>
       <Group justify="space-between" preventGrowOverflow={true}>
-        <Text fw={700} c="white" ml="sm" size="lg">勝ち抜け戦</Text>
+        <Group gap={0}>
+        <IconChevronsRight style={{color:"white"}}/>
+        <Text fw={700} c="white" size="lg">{type !== null ? gameType[type] : "-"}</Text>
+        </Group>
         <ActionIcon  radius="lg" size="lg" variant="white" color="dark" onClick={open}>
           <IconDotsVertical />
         </ActionIcon >
