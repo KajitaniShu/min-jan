@@ -44,25 +44,11 @@ async function addUser(name: any, language: any, uuid: any) {
 
 async function setUser(
     uuid:   string,
-    name:   string,
-    money:  number,
-    win:    number,
-    lose:   number,
-    level:  number,
-    language: string,
-    friends: string[],
-    history: string[]) {
+    name:   string,) {
   const update = Timestamp.now();
-  const docRef = await setDoc(doc(db, "user-data", uuid), {
+  const docRef = await setDoc(doc(db, "users", uuid), {
     uuid: uuid,
     name: name,
-    money: 0,
-    win: 0,
-    lose: 0,
-    level: 1.0,
-    language: language,
-    friends: friends,
-    history: history,
     update: update
   });
 }

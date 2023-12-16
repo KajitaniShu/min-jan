@@ -4,7 +4,7 @@ import multiavatar from '@multiavatar/multiavatar'
 import { IconRefresh } from '@tabler/icons-react';
 
 export function Profile({userData}: any) {
-  console.log(userData)
+  
   return (
     <Container>
       <Group mb="xl">

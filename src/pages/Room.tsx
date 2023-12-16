@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Lobby } from "../components/Lobby"
 import { Game } from "../components/Game"
+import { EnterName } from "../components/EnterName"
 import { useParams } from 'react-router-dom';
 import { doc, where, collection, query, onSnapshot } from 'firebase/firestore';
 import { useDocumentDataOnce, useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { useAuthState, useSignInWithFacebook } from 'react-firebase-hooks/auth';
-import { db, auth } from '../config/firebase'
+import { db, auth, setUser } from '../config/firebase'
 import {signInAnonymously } from "firebase/auth";
 
 export function Room() {
@@ -24,10 +25,16 @@ export function Room() {
   }, [])
 
   useEffect(() =>{
-    if(!initialising && !user){
-      signInAnonymously(auth);
-    }
+    (async() => {
+      if(!initialising && !user){
+        await signInAnonymously(auth);
+      }
+      if(userData && userData.length === 0 && user?.uid){
+        setUser(user?.uid, "ユーザー");
+      }
+    })()
   })
+  
 
   return (
     <>
