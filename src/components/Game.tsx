@@ -45,12 +45,11 @@ export function Game({roomData, userData, roomId}: any) {
         </AppShell.Header>
         
       <AppShell.Main>
-        <Center h="100vh" w="100%">
-          {/* <PCSelect /> */}
-        </Center>
+          {width > 700 && <PCSelect /> }
       </AppShell.Main>
       <AppShell.Footer bg="transparent" p="xs" pb="lg" hiddenFrom="sm">
-        <GameFooterButton />
+      {width <= 700 && <GameFooterButton state={state}/>}
+        
       </AppShell.Footer>
     </AppShell>
     <Modal.Root bg="blue" size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }}  >

@@ -9,7 +9,7 @@ import { SelectDrawer } from "../components/SelectDrawer"
 
 
 
-export function GameFooterButton() {
+export function GameFooterButton({state}:any) {
   const [hands, setHands] = useState<string>("gu");
   const [drawerMode, setDrawerMode] = useState<string>("none");
   const [opened, { open, close }] = useDisclosure(false);
@@ -32,11 +32,13 @@ export function GameFooterButton() {
             <IconMessage />
           </ActionIcon>
       </Group>
-      <Group gap="8" justify='flex-end' w="100%">
-          <ActionIcon radius="1000px" variant="white" h={"45"} w={"45"} color="dark" onClick={()=> {setDrawerMode("hand");  open();}}>
-            <Image src={"/images/svg/"+ hands + ".svg"} />
-          </ActionIcon>
-      </Group>
+      {state === "waiting" &&
+        <Group gap="8" justify='flex-end' w="100%">
+            <ActionIcon radius="1000px" variant="white" h={"45"} w={"45"} color="dark" onClick={()=> {setDrawerMode("hand");  open();}}>
+              <Image src={"/images/svg/"+ hands + ".svg"} />
+            </ActionIcon>
+        </Group>
+      }
     </Stack>
     
     
@@ -45,7 +47,7 @@ export function GameFooterButton() {
           <Chat opened={opened} close={close}/>
         </>
       } */}
-      <SelectDrawer trigger={drawerMode === "hand"} setDrawerMode={setDrawerMode}/>
+      <SelectDrawer trigger={drawerMode === "hand"} setDrawerMode={setDrawerMode} state={state}/>
   </>
   )
 }

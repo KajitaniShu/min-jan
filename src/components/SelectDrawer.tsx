@@ -3,15 +3,14 @@ import { UnstyledButton, Image, Group, rem, Drawer, Button, Text, Divider, Conta
 import { useDisclosure } from '@mantine/hooks';
 import { IconCircleCheckFilled } from '@tabler/icons-react';
 
-export function SelectDrawer({trigger, setDrawerMode}:any) {
+export function SelectDrawer({trigger, setDrawerMode, state}:any) {
   const [hands, setHands] = useState<string>("gu");
   const [opened, { open, close }] = useDisclosure(false);
 
   useEffect(() => {
-    if(trigger) open();
+    if(trigger || (state==="waiting" && !opened)) open();
     else        close();
-  }, [trigger])
-
+  }, [trigger, state])
 
   return (
     <Drawer.Root size="lg" opened={opened} onClose={()=>{close(); setDrawerMode("none")}} position="bottom">

@@ -35,9 +35,9 @@ export function GameScene({roomData, lastGameData, memberData, state}:any) {
       return( <GameCharacter character={/*"00"+String(index+1)*/ "001"} name={memberData.find((e:any) => e.uuid === userId).name} userHand={userData.choice === null ? "null" : hand[userData.choice]} position={position[index]} win={true} key={index} />)
     })
     }
-    {state === "waiting" && 
+    {/* {state === "waiting" && 
       <HandSelect roomData={roomData} select={"pa"}/>
-    }
+    } */}
     </>
   )
 }
