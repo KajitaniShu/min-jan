@@ -1,4 +1,5 @@
-import { AppShell, Box, rem, ScrollArea, Text, Modal, Center } from '@mantine/core';
+import { useEffect, useState } from 'react'
+import { AppShell, Box, rem, ScrollArea, Text, Modal, Center, Group, px } from '@mantine/core';
 import { Canvas } from '@react-three/fiber'
 import { HeadGame } from "./HeadGame"
 import { LobbyFooterButton } from "../components/LobbyFooterButton"
@@ -11,42 +12,54 @@ import { OrbitControls, Environment, Grid, Sparkles, SpotLight, Stage, Perspecti
 import { where, collection, query } from 'firebase/firestore';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { db, auth } from '../config/firebase'
+import { useViewportSize } from '@mantine/hooks';
 
 
 export function Game({roomData, userData, roomId}: any) {
   const [opened, { open, close }] = useDisclosure(false);
   const [memberData] = useCollectionDataOnce(query(collection(db, "users"),where('uuid', 'in', roomData[0].members)));
   const [lastGameData, loading] = useCollectionDataOnce(query(collection(db, "games"), where("uid", "==", String(roomId)+"-r1")));
+  const [state, setState] = useState<String>("loading");
+  const { height, width } = useViewportSize();
+  
+  useEffect(()=>{
+    let flag = false;
+    if(roomData){
+    Object.entries(roomData?.[0].player).map((e:any) => {
+      if(!e[1]) flag = true;
+    })}
+    if(flag) setState("waiting");
+    else{
+      setState("result");
+    }
+  },[roomData]);
   
   return (
     <>
     <AppShell
-      header={{ height: 80 }}
-      aside={{ width: 320, breakpoint: 'sm', collapsed: { mobile: true } }}
       footer={{height: "auto", collapsed: true}}
-      padding="md"
       withBorder={false}
     >
       <AppShell.Header p="md" style={{backgroundColor: "transparent"}}>
-        <HeadGame icon="./images/icon/0.png" memberData={memberData} userData={userData} type={roomData?.[0].type}/>
+        <HeadGame memberData={memberData} userData={userData} type={roomData?.[0].type}/>
         </AppShell.Header>
-        <AppShell.Aside pl="md" pr={rem(50)} style={{backgroundColor: "transparent"}}>
-          <div style={{flex:1}}/>
-          <PCSelect />
-        </AppShell.Aside>
+        
       <AppShell.Main>
+        <Center h="100vh" w="100%">
+          {/* <PCSelect /> */}
+        </Center>
       </AppShell.Main>
       <AppShell.Footer bg="transparent" p="xs" pb="lg" hiddenFrom="sm">
         <GameFooterButton />
       </AppShell.Footer>
     </AppShell>
     <Modal.Root bg="blue" size="sm" opened={opened} onClose={close} shadow="0" centered transitionProps={{ transition:"fade" }}  >
-        <Modal.Content bg="transparent" style={{zIndex:10}}>
-          <Modal.Body>
-            <Text c="white" ta="center" fw="bolder" size={rem(35)}>あいこ</Text>
-          </Modal.Body>
-        </Modal.Content>
-      </Modal.Root> 
+      <Modal.Content bg="transparent" style={{zIndex:10}}>
+        <Modal.Body>
+          <Text c="white" ta="center" fw="bolder" size={rem(35)}>あいこ</Text>
+        </Modal.Body>
+      </Modal.Content>
+    </Modal.Root> 
     
     
     <Canvas
@@ -63,7 +76,7 @@ export function Game({roomData, userData, roomId}: any) {
       }}
     >
       <Stage adjustCamera={false} environment={"city"} intensity={5}>
-        <GameScene roomData={roomData} lastGameData={lastGameData} memberData={memberData}/>
+        <GameScene roomData={roomData} lastGameData={lastGameData} memberData={memberData} state={state}/>
       </Stage>
     </Canvas>
     </>

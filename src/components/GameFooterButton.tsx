@@ -5,11 +5,13 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconX } from '@tabler/icons-react';
 import { Chat } from "../components/Chat"
 import { HandsButton } from "../components/HandsButton"
+import { SelectDrawer } from "../components/SelectDrawer"
+
 
 
 export function GameFooterButton() {
   const [hands, setHands] = useState<string>("gu");
-  const [drawerMode, setDrawerMode] = useState<string>("chat");
+  const [drawerMode, setDrawerMode] = useState<string>("none");
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -38,24 +40,12 @@ export function GameFooterButton() {
     </Stack>
     
     
-      {drawerMode === "chat" && 
+      {/* {drawerMode === "chat" && 
         <>
           <Chat opened={opened} close={close}/>
         </>
-      }
-      {drawerMode === "hand" && 
-
-
-      <Drawer.Root opened={opened} onClose={close} position="bottom" size="xs">
-        <Drawer.Content bg="transparent" style={{borderRadius:"15px 15px 0 0" }} >
-        <Drawer.Body>
-        <Paper bg="white" radius="lg" p="lg">
-        <HandsButton hands={hands} setHands={setHands} close={close} />
-        </Paper>
-        </Drawer.Body>
-        </Drawer.Content>
-        </Drawer.Root>
-      }
+      } */}
+      <SelectDrawer trigger={drawerMode === "hand"} setDrawerMode={setDrawerMode}/>
   </>
   )
 }

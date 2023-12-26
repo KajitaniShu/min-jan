@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Group, Text, ActionIcon, Drawer, ScrollArea, Stack } from '@mantine/core';
+import { Group, Text, ActionIcon, Drawer, ScrollArea, rem } from '@mantine/core';
 import { IconDotsVertical, IconChevronsRight, IconX  } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { Player } from "../components/Player"
@@ -10,19 +10,19 @@ export function HeadGame({memberData, userData, type}: any) {
     const [opened, { open, close }] = useDisclosure(false);
     const color = ["#362FD9", "#F11A7B", "#105E62", "#795548", "#0D7377", "#6500ff", "#9a00ff"];
     const gameType = ["1位決定戦", "敗者決定戦"]
-    console.log(type)
+    
   return (
     <>
-      <Group justify="space-between" preventGrowOverflow={true}>
+      <Group justify="space-between" preventGrowOverflow={true} h={rem(50)}>
         <Group gap={0}>
-        <IconChevronsRight style={{color:"white"}}/>
-        <Text fw={700} c="white" size="lg">{type !== null ? gameType[type] : "-"}</Text>
+          <IconChevronsRight style={{color:"white"}}/>
+          <Text fw={700} c="white" size="lg">{type !== null ? gameType[type] : "-"}</Text>
         </Group>
         <ActionIcon  radius="lg" size="lg" variant="white" color="dark" onClick={open}>
           <IconDotsVertical />
         </ActionIcon >
       </Group>
-      <ScrollArea offsetScrollbars>
+      <ScrollArea offsetScrollbars h={rem(100)}>
         <div className="scroll-x">
           {memberData && memberData.map((data: any, index: any) => {return (
             <Player name={data.name} color={color[index]} src={"/models/characters/001"/*+String(index+1)*/ + ".glb"} key={index}/>

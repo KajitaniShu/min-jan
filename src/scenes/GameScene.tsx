@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { modals, openModal, closeModal } from '@mantine/modals';
 import { useRef } from 'react';
 import * as THREE from 'three'
@@ -10,8 +9,7 @@ import { MantineProvider, createTheme } from '@mantine/core';
 import { Loading3D } from '../components/Loading3D';
 import { HandSelect } from '../components/HandSelect';
 
-export function GameScene({roomData, lastGameData, memberData}:any) {
-  const [state, setState] = useState<String>("loading");
+export function GameScene({roomData, lastGameData, memberData, state}:any) {
   const position=[
     [3, 0, 1],
     [-3, 0, 6],
@@ -23,18 +21,6 @@ export function GameScene({roomData, lastGameData, memberData}:any) {
     [10, 0, 3],
   ]
   const hand = ["gu", "choki", "pa"]
-  
-  useEffect(()=>{
-    let flag = false;
-    if(roomData){
-    Object.entries(roomData?.[0].player).map((e:any) => {
-      if(!e[1]) flag = true;
-    })}
-    if(flag) setState("waiting");
-    else{
-      setState("result");
-    }
-  },[roomData])
 
 
   return (

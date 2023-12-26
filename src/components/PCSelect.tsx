@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Divider, Group, Text, Stack, Flex, Image, ActionIcon, ColorPicker, Button, Anchor, rem} from '@mantine/core';
+import { Divider, Group, Text, Stack, Flex, Image, ActionIcon, Overlay, Button, Anchor, rem} from '@mantine/core';
 
 export function PCSelect() {
   const [hands, setHands] = useState<string>("gu");
@@ -15,10 +15,17 @@ export function PCSelect() {
       pt="xl"
       pb={rem(100)}
     >
-      <Text size="sm" fw="bold" c="dark" mb="sm">次の手を選んでください</Text>
-        <Button variant="filled" radius="xl" color={hands === "gu"    ? "gray.9" : "gray.4"} fullWidth onClick={()=>setHands("gu")}>グー</Button>
-        <Button variant="filled" radius="xl" color={hands === "choki" ? "gray.9" : "gray.4"} fullWidth onClick={()=>setHands("choki")}>チョキ</Button>
-        <Button variant="filled" radius="xl" color={hands === "pa"    ? "gray.9" : "gray.4"} fullWidth onClick={()=>setHands("pa")}>パー</Button>
+    <Group h={rem(250)} w={rem(500)} justify='center'>
+      <ActionIcon variant="transparent" aria-label="Settings"  w={hands === "gu"   ? rem(150) : rem(130)} onClick={()=>setHands("gu")}>
+        <Image src="/images/svg/card_gu.svg"  style={{...hands === "gu"     && {border:"2px solid #E26EE5", borderRadius:15 }}}/>
+      </ActionIcon>
+      <ActionIcon variant="transparent" aria-label="Settings" w={hands === "choki" ? rem(150) : rem(130)} onClick={()=>setHands("choki")}>
+      <Image src="/images/svg/card_choki.svg" style={{...hands === "choki"  && {border:"2px solid #E26EE5", borderRadius:15 }}}/>
+      </ActionIcon>
+      <ActionIcon variant="transparent" aria-label="Settings" w={hands === "pa"    ? rem(150) : rem(130)} onClick={()=>setHands("pa")}>
+      <Image src="/images/svg/card_pa.svg"    style={{...hands === "pa"     && {border:"2px solid #E26EE5", borderRadius:15 }}}/>
+      </ActionIcon>
+    </Group>
     </Flex>
     </>
   )

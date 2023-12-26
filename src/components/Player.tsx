@@ -10,7 +10,7 @@ export function Player({name, color, src}: any) {
       <Text ta="center" size={rem(10)} w="100%" fw="bolder" lineClamp={1} c="white">
         {name}
       </Text>
-      <AvatarIcon color={color} size={"lg"} src={src} />
+      <AvatarIcon color={color} size={rem(50)} src={src} />
     </Stack>
 )
 }

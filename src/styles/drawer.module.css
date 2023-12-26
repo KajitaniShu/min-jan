@@ -1,0 +1,19 @@
+.root {
+  background-color: #393E46;
+  opacity:0;
+  width: 250em;
+  z-index:0;
+  border-radius:"20px";
+  &::before {
+    width:0;
+  }
+}
+.description{
+  white-space: nowrap;
+  font-size:10px;
+  color: var(--mantine-color-white);
+}
+.title {
+  font-size:10px;
+  color: var(--mantine-color-white);
+}
