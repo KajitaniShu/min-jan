@@ -9,7 +9,7 @@ import { SelectDrawer } from "../components/SelectDrawer"
 
 
 
-export function GameFooterButton({state}:any) {
+export function GameFooterButton({state, roomId, uuid, round}:any) {
   const [hands, setHands] = useState<string>("gu");
   const [drawerMode, setDrawerMode] = useState<string>("none");
   const [opened, { open, close }] = useDisclosure(false);
@@ -47,7 +47,7 @@ export function GameFooterButton({state}:any) {
           <Chat opened={opened} close={close}/>
         </>
       } */}
-      <SelectDrawer trigger={drawerMode === "hand"} setDrawerMode={setDrawerMode} state={state}/>
+      <SelectDrawer trigger={drawerMode === "hand"} setDrawerMode={setDrawerMode} state={state} roomId={roomId} uuid={uuid} round={round}/>
   </>
   )
 }

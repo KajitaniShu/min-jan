@@ -1,37 +1,43 @@
 import React, { useState } from 'react'
-import { Divider, Group, Text, Stack, Flex, Image, ActionIcon, Overlay, Button, Anchor, rem} from '@mantine/core';
+import { Divider, Paper, Group, Text, Card, Flex, Image, ActionIcon, Overlay, Button, Anchor, rem} from '@mantine/core';
+import { setHand } from '../config/firebase'
 
-export function PCSelect() {
-  const [hands, setHands] = useState<string>("gu");
+
+export function PCSelect({roomId, uuid, round}: any) {
+  const [hands, setHands] = useState<number>(0);
   
   return (
     <>
-    
-    <Flex
-      gap="sm"
-      direction="column"
-      wrap="wrap"
-      w="100%"
-      h="100vh"
-      pt="xl"
-      pb={rem(100)}
-    >
-    <div style={{flex:1}}></div>
-    <Group h={rem(250)} w="100%" justify='flex-end' pr="lg">
-      <ActionIcon variant="transparent" aria-label="Settings"  w={hands === "gu"   ? rem(150) : rem(130)} onClick={()=>setHands("gu")}>
-        <Image src="/images/svg/card_gu.svg"  style={{...hands === "gu"     && {border:"2px solid #E26EE5", borderRadius:15 }}}/>
-      </ActionIcon>
-      <ActionIcon variant="transparent" aria-label="Settings" w={hands === "choki" ? rem(150) : rem(130)} onClick={()=>setHands("choki")}>
-      <Image src="/images/svg/card_choki.svg" style={{...hands === "choki"  && {border:"2px solid #E26EE5", borderRadius:15 }}}/>
-      </ActionIcon>
-      <ActionIcon variant="transparent" aria-label="Settings" w={hands === "pa"    ? rem(150) : rem(130)} onClick={()=>setHands("pa")}>
-      <Image src="/images/svg/card_pa.svg"    style={{...hands === "pa"     && {border:"2px solid #E26EE5", borderRadius:15 }}}/>
-      </ActionIcon>
-    </Group>
-    <Group w="100%" justify='flex-end' pr="lg">
-      <Button size="lg" w={rem(440)} color="dark" fullWidth>決定</Button>
-    </Group>
-    </Flex>
+    <Card w={rem(560)} shadow="sm" radius="md">
+      <Card.Section>
+        <Group justify='center' w="100%" py="md" bg="#22A699">
+          <Text c="white" fw="bold">手を選んでください</Text>
+        </Group>
+        <Divider c="dark" w="100%"/>
+      </Card.Section>
+      <Card.Section>
+        <Group h={rem(250)} w="100%" justify='center' pr="lg" bg="#F5F5F5">
+          <ActionIcon variant="transparent" aria-label="Settings"  w={hands === 0   ? rem(150) : rem(130)} onClick={()=>setHands(0)}>
+            <Image src="/images/svg/card_gu.svg"  style={{...hands === 0     && {border:"4px solid #ccc", borderRadius:20 }}}/>
+          </ActionIcon>
+          <ActionIcon variant="transparent" aria-label="Settings" w={hands === 1 ? rem(150) : rem(130)} onClick={()=>setHands(1)}>
+          <Image src="/images/svg/card_choki.svg" style={{...hands === 1  && {border:"4px solid #ccc", borderRadius:20 }}}/>
+          </ActionIcon>
+          <ActionIcon variant="transparent" aria-label="Settings" w={hands === 2    ? rem(150) : rem(130)} onClick={()=>setHands(2)}>
+          <Image src="/images/svg/card_pa.svg"    style={{...hands === 2     && {border:"4px solid #ccc", borderRadius:20 }}}/>
+          </ActionIcon>
+        </Group>
+      </Card.Section>
+      
+      <Card.Section>
+      <Divider c="dark" w="100%"/>
+        <Group justify='center' w="100%" py="sm">
+          <Button size="lg" color="dark" onClick={()=>setHand(hands, uuid, roomId, round)}>
+            <Text mx={rem(60)} size="lg" fw="bold">決定</Text>
+          </Button>
+        </Group>
+      </Card.Section>  
+      </Card>
     </>
   )
 }

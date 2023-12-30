@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import {collection, doc, addDoc, query, setDoc, where, Timestamp } from 'firebase/firestore';
+import {collection, doc, addDoc, query, setDoc, where, updateDoc, Timestamp } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAUbxtSUx41ik9f68RYdYAroidTIPYcYCg",
@@ -76,24 +76,29 @@ async function addRoom(
   return docRef.id;
 }
 
-async function setPredict(
-  predict: any, 
-  effectId: any, 
-  playerUuid: any,
-  roomId: any
+async function setHand(
+  hand: number, 
+  uuid: string,
+  roomId: string,
+  round: number
   ) {
-  const update = Timestamp.now();
-  const gameDataRef = collection(db, "room-data", roomId, "game-data");
-  const docRef = await addDoc(gameDataRef, {
-    predict:  predict,
-    hit:      0,
-    blow:     0,
-    playerUuid: playerUuid,
-    update:  update,
-    effectId: effectId,
-    type: 'predict',
-  });
-  return docRef.id;
+
+  // gamesに手を追加する
+  const gameRef = doc(db, "games", roomId + "-r" + String(round));
+  const gameKey = `player.${uuid}.choice`;
+  const gameData : any = {};
+  gameData[gameKey] = hand;
+  const game = await updateDoc(gameRef, gameData);
+
+
+  // 手を追加したことをルームに通知
+  const roomRef = doc(db, "rooms", roomId);
+  const key = `player.${uuid}`;
+  const updateData : any = {};
+  updateData[key] = true;
+  const docRef = await updateDoc(roomRef, updateData);
+
+  return docRef;
 }
 
 async function setMessage(
@@ -111,4 +116,4 @@ async function setMessage(
   });
 }
 
-export {db, storage, auth, addUser, setUser, addRoom, setPredict, setMessage};
+export {db, storage, auth, addUser, setUser, addRoom, setHand, setMessage};

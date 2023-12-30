@@ -3,7 +3,7 @@ import { AppShell, Box, rem, ScrollArea, Text, Modal, Center, Group, px } from '
 import { Canvas } from '@react-three/fiber'
 import { HeadGame } from "./HeadGame"
 import { LobbyFooterButton } from "../components/LobbyFooterButton"
-import { GameScene } from "../scenes/GameScene"
+import { ResultScene } from "../scenes/ResultScene"
 import { GameFooterButton } from "../components/GameFooterButton"
 import { PCSelect } from './PCSelect';
 import "../index.css"
@@ -18,7 +18,6 @@ import { useViewportSize } from '@mantine/hooks';
 export function Game({roomData, userData, roomId}: any) {
   const [opened, { open, close }] = useDisclosure(false);
   const [memberData] = useCollectionDataOnce(query(collection(db, "users"),where('uuid', 'in', roomData[0].members)));
-  const [lastGameData, loading] = useCollectionDataOnce(query(collection(db, "games"), where("uid", "==", String(roomId)+"-r1")));
   const [state, setState] = useState<String>("loading");
   const { height, width } = useViewportSize();
   
@@ -33,7 +32,7 @@ export function Game({roomData, userData, roomId}: any) {
       setState("result");
     }
   },[roomData]);
-  
+
   return (
     <>
     <AppShell
@@ -45,10 +44,25 @@ export function Game({roomData, userData, roomId}: any) {
         </AppShell.Header>
         
       <AppShell.Main>
-          {width > 700 && <PCSelect /> }
+        {width > 700 && state==="waiting" && userData && userData.length > 0 && 
+          <Center h="100vh">
+            <PCSelect 
+              roomId={roomId} 
+              uuid={userData[0].uuid} 
+              round={roomData?.[0].round}
+            />
+          </Center> 
+        }
       </AppShell.Main>
       <AppShell.Footer bg="transparent" p="xs" pb="lg" hiddenFrom="sm">
-      {width <= 700 && <GameFooterButton state={state}/>}
+        {width <= 700 &&  
+          <GameFooterButton 
+            state={state}
+            roomId={roomId} 
+            uuid={userData[0].uuid} 
+            round={roomData?.[0].round}
+          />
+        }
         
       </AppShell.Footer>
     </AppShell>
@@ -67,7 +81,7 @@ export function Game({roomData, userData, roomId}: any) {
       camera={{ position: [0, 6, 40] }}
       style={{
         zIndex:-1,
-        backgroundColor:"#404B69",
+        backgroundColor:"#8FC3B9",
         position: 'absolute',
         top: 0,
         width: '100vw',
@@ -75,7 +89,9 @@ export function Game({roomData, userData, roomId}: any) {
       }}
     >
       <Stage adjustCamera={false} environment={"city"} intensity={5}>
-        <GameScene roomData={roomData} lastGameData={lastGameData} memberData={memberData} state={state}/>
+        {state==="result" && 
+          <ResultScene roomData={roomData} roomId={roomId} memberData={memberData} state={state}/>
+        }
       </Stage>
     </Canvas>
     </>

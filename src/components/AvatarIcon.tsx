@@ -15,6 +15,7 @@ export function AvatarIcon({color, size, src, ...props}: any) {
 
   return (
     <Avatar 
+      bg="rgba(10,10,10,0.3)"
       {...props}
       src={base64Image}
       color={color}

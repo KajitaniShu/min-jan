@@ -35,7 +35,6 @@ export function Room() {
     })()
   })
   
-
   return (
     <>
       {roomData && roomData.length > 0 && roomData[0].state === "lobby" &&  <Lobby roomData={roomData} userData={userData}/> }
