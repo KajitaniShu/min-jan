@@ -38,7 +38,7 @@ export function Room() {
   return (
     <>
       {roomData && roomData.length > 0 && roomData[0].state === "lobby" &&  <Lobby roomData={roomData} userData={userData}/> }
-      {roomData && roomData.length > 0 && roomData[0].state === "game"  &&  <Game  roomData={roomData} userData={userData} roomId={param.id}/> }
+      {roomData && roomData.length > 0  &&  <Game  roomData={roomData} userData={userData} roomId={param.id}/> }
     </>
   )
 }

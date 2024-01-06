@@ -2,6 +2,7 @@ import React from 'react';
 import '@mantine/core/styles.css';
 import { Routes, Route } from 'react-router-dom';
 import { Home } from "./pages/Home"
+import { CreateRoom } from "./pages/CreateRoom"
 import { Room } from "./pages/Room"
 import { MantineProvider, createTheme, rem } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
@@ -20,6 +21,7 @@ function App() {
       }}/>
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/room" element={<CreateRoom />} />
       <Route path="/room/:id" element={<Room />} />
     </Routes>
     </MantineProvider>

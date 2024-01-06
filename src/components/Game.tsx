@@ -8,7 +8,7 @@ import { GameFooterButton } from "../components/GameFooterButton"
 import { PCSelect } from './PCSelect';
 import "../index.css"
 import { useDisclosure } from '@mantine/hooks';
-import { OrbitControls, Environment, Grid, Sparkles, SpotLight, Stage, PerspectiveCamera } from '@react-three/drei'
+import { Environment, Grid, Sparkles, SpotLight, Stage, PerspectiveCamera } from '@react-three/drei'
 import { where, collection, query } from 'firebase/firestore';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { db, auth } from '../config/firebase'
@@ -78,7 +78,7 @@ export function Game({roomData, userData, roomId}: any) {
     <Canvas
       flat
       shadows
-      camera={{ position: [0, 6, 40] }}
+      camera={{ position: [0, 20, 50] }}
       style={{
         zIndex:-1,
         backgroundColor:"#8FC3B9",

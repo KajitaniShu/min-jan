@@ -22,7 +22,7 @@ export function GameCharacter({character, userHand, win, name, ...props}: any) {
     <>
       <group {...props}>
       <animated.group position-y={win ? positionY : 0}>
-        <Html distanceFactor={14} transform sprite occlude position={[0, 6, 0]}>
+        <Html distanceFactor={14} transform sprite occlude position={[0, 12, 0]}>
           <MantineProvider>
             <Text c="white" fw="bold">{name}</Text>
           </MantineProvider>
@@ -31,7 +31,7 @@ export function GameCharacter({character, userHand, win, name, ...props}: any) {
         <mesh receiveShadow castShadow  material-envMapIntensity={0.25} >
           <primitive 
             object={model.scene.clone()}
-            position={[0,0,0]}
+            position={[0,6.3,0]}
             scale={[1, 1, 1]} 
           />
         </mesh>
@@ -39,13 +39,13 @@ export function GameCharacter({character, userHand, win, name, ...props}: any) {
         <mesh receiveShadow castShadow  material-envMapIntensity={0.25} rotation={[0, 0, 0.1]}>
           <primitive 
             object={hand.scene.clone()}
-            position={[-1.7,0.5,0]}
+            position={[-1.7,6.5,0]}
             scale={[1, 1, 1]} 
           />
         </mesh>
       </animated.group>
-      <animated.group scale={win ? shaderScale : 3} >
-        <Shadow fog  opacity={0.4} />
+      <animated.group scale={3} >
+        <Shadow fog position-y={2.2} opacity={0.4} />
       </animated.group>
       </group>
     </>
