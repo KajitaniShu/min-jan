@@ -1,11 +1,23 @@
-import { useGLTF, Shadow, Html } from '@react-three/drei'
+import { useMemo } from "react"
+import { useGLTF, Shadow, Html,  } from '@react-three/drei'
+import { useLoader} from "@react-three/fiber"
 import { useSpring, animated } from '@react-spring/three'
 import { Box, MantineProvider, Text } from '@mantine/core';
+import * as THREE from 'three'
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 
 export function GameCharacter({character, userHand, win, name, ...props}: any) {
   
-  const model = useGLTF("/models/characters/" + character + ".glb");
   const hand = useGLTF("/models/" + userHand + ".glb");
+
+  const model = useLoader(GLTFLoader, "/models/characters/" + character + ".glb");
+
+  model.scene.children.forEach((mesh, i) => {
+      mesh.castShadow = true;
+  })
+  
+  model.scene.castShadow = true;
+
   const { positionY, shaderScale } = useSpring({
     positionY: 0.5,
     shaderScale: 2.6,

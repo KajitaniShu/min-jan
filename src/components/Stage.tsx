@@ -1,7 +1,8 @@
 import { useGLTF } from '@react-three/drei'
 
 export function Stage() {
-  const model = useGLTF("/models/stage.glb");
+  const model = useGLTF("/models/stage.glb")
+  
   return (
     <mesh>
       <primitive 

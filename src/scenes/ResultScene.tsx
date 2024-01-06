@@ -1,7 +1,7 @@
 import { modals, openModal, closeModal } from '@mantine/modals';
 import { useEffect } from 'react';
 import * as THREE from 'three'
-import { Canvas } from '@react-three/fiber'
+import { useThree } from '@react-three/fiber'
 import { Box, rem, Text } from '@mantine/core';
 import { Html,useHelper, Environment, Shadow } from '@react-three/drei'
 import { GameCharacter } from "../components/GameCharacter"
@@ -27,6 +27,10 @@ export function ResultScene({roomData, memberData, roomId, state}:any) {
     [10, 0, 3],
   ]
   const hand = ["gu", "choki", "pa"]
+  useThree(({ camera }) => {
+    camera.position.set(0, 15, 60);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+  });
 
 
   return (

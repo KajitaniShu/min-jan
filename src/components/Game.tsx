@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AppShell, Box, rem, ScrollArea, Text, Modal, Center, Group, px } from '@mantine/core';
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
 import { HeadGame } from "./HeadGame"
 import { LobbyFooterButton } from "../components/LobbyFooterButton"
 import { ResultScene } from "../scenes/ResultScene"
@@ -32,6 +32,7 @@ export function Game({roomData, userData, roomId}: any) {
       setState("result");
     }
   },[roomData]);
+
 
   return (
     <>
@@ -77,8 +78,6 @@ export function Game({roomData, userData, roomId}: any) {
     
     <Canvas
       flat
-      shadows
-      camera={{ position: [0, 20, 50] }}
       style={{
         zIndex:-1,
         backgroundColor:"#8FC3B9",
@@ -88,7 +87,7 @@ export function Game({roomData, userData, roomId}: any) {
         height: '100vh'
       }}
     >
-      <Stage adjustCamera={false} environment={"city"} intensity={5}>
+      <Stage adjustCamera={false} environment={"forest"} intensity={6}>
         {state==="result" && 
           <ResultScene roomData={roomData} roomId={roomId} memberData={memberData} state={state}/>
         }
