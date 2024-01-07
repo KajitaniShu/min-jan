@@ -26,7 +26,7 @@ export function Home() {
           pb={rem(100)}
         >
           <SideButton text="遊び方"  bg="#ECE8E8" color="#2D2A29"/>
-          <SideButton text="ルームを作る" href="/room" bg="#5C7CFA" color="#EDF2FF"/>
+          <SideButton text="ルームを作る" href="/room" bg="#22A699" color="#EDF2FF"/>
         </Flex>
       </AppShell.Aside>
       

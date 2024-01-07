@@ -36,7 +36,7 @@ export function GameCharacter({character, userHand, win, name, ...props}: any) {
       <animated.group position-y={win ? positionY : 0}>
         <Html distanceFactor={14} transform sprite occlude position={[0, 12, 0]}>
           <MantineProvider>
-            <Text c="white" fw="bold">{name}</Text>
+            <Text c="dark" fw="bold">{name}</Text>
           </MantineProvider>
         </Html>
         {model && model.scene && 

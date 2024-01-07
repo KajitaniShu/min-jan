@@ -43,14 +43,19 @@ async function addUser(name: any, language: any, uuid: any) {
 }
 
 async function setUser(
-    uuid:   string,
-    name:   string,) {
+    name:       string,
+    character:  number,
+    uuid:       string
+  ) {
   const update = Timestamp.now();
   const docRef = await setDoc(doc(db, "users", uuid), {
     uuid: uuid,
+    character: character,
     name: name,
     update: update
   });
+  
+  return docRef;
 }
 
 async function addRoom(
@@ -82,7 +87,6 @@ async function setHand(
   roomId: string,
   round: number
   ) {
-
   // gamesに手を追加する
   const gameRef = doc(db, "games", roomId + "-r" + String(round));
   const gameKey = `player.${uuid}.choice`;

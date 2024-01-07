@@ -1,14 +1,14 @@
 import { AppShell, Flex, rem } from '@mantine/core';
 import { Canvas } from '@react-three/fiber'
 import { HeadGame } from "./HeadGame"
-import { SideButton } from "../components/SideButton"
-import { LobbyFooterButton } from "../components/LobbyFooterButton"
+import { SideButton } from "./SideButton"
+import { LobbyFooterButton } from "./LobbyFooterButton"
 import { db } from '../config/firebase'
 import { where, collection, query } from 'firebase/firestore';
 import { useDocumentDataOnce, useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { useAuthState, useSignInWithFacebook } from 'react-firebase-hooks/auth';
 
-export function Lobby({roomData, userData}: any) {
+export function LobbyScene({roomData, userData}: any) {
   const [memberData] = useCollectionDataOnce(query(collection(db, "users"),where('uuid', 'in', roomData[0].members)));
   
   return (

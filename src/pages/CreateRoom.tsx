@@ -1,6 +1,6 @@
 import React from 'react'
 import { Center, Container, Group } from '@mantine/core';
-import { UserRegistration } from "./UserRegistration"
+import { UserRegistration } from "../components/UserRegistration"
 
 export function CreateRoom() {
   return (
