@@ -42,15 +42,22 @@ export function Game({user}:any) {
   }
 
   return (
-    <Center h="100vh" w="100%">
-      <Loader color="cyan" />
-    </Center>
-  );
+    <>
+      {roomData && roomData.length > 0 && roomData[0].state === "lobby" &&  <LobbyScene roomData={roomData} userData={userData}/> }
+      {roomData && roomData.length > 0  &&  <GameScene  roomData={roomData} userData={userData} roomId={param.id}/> }
+    </>
+  )
+
+
+  // return (
+  //   <Center h="100vh" w="100%">
+  //     <Loader color="cyan" />
+  //   </Center>
+  // );
   
   
   // return (
   //   <>
-  //     {!userData || userData.length === 0 && <UserRegistration uuid={user?.uid} />}
   //     {roomData && roomData.length > 0 && roomData[0].state === "lobby" &&  <LobbyScene roomData={roomData} userData={userData}/> }
   //     {roomData && roomData.length > 0  &&  <GameScene  roomData={roomData} userData={userData} roomId={param.id}/> }
   //   </>

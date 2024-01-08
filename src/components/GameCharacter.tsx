@@ -44,7 +44,7 @@ export function GameCharacter({character, userHand, win, name, ...props}: any) {
           <primitive 
             object={model.scene.clone()}
             position={[0,6.3,0]}
-            scale={[1, 1, 1]} 
+            scale={[2, 2, 2]} 
           />
         </mesh>
         }

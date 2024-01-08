@@ -8,6 +8,8 @@ import {
   Button,
   Divider,
   TextInput,
+  Stack,
+  LoadingOverlay,
   Container,
   Image,
   Avatar,
@@ -18,10 +20,10 @@ import { setUser } from '../config/firebase'
 import '@mantine/carousel/styles.css';
 import { IconBrandGoogleFilled, IconUser  } from '@tabler/icons-react';
 const images = [
-  'images/icon/man.png',
-  'images/icon/man.png',
-  'images/icon/man.png',
-  'images/icon/man.png',
+  '/images/icon/man.png',
+  '/images/icon/man.png',
+  '/images/icon/man.png',
+  '/images/icon/man.png',
 ];
 
 
@@ -55,21 +57,23 @@ export function UserRegistration({uuid}: any) {
     <form
       onSubmit={form.onSubmit((values) => { submit(values.name, values.character); })}
     >
-    <Group bg="#F2F2F2">
-    <Container size="xs" w="100%" h="100vh" >
-      <Center  h="100%">
-    <Card w="100%" withBorder radius="md">
-    <Card.Section>
-      <Group justify='center' w="100%" py="md" bg="#22A699">
-        <Text c="white" fw="bold">ニックネームを登録してください</Text>
-      </Group>
-      <Divider c="dark" w="100%"/>
-    </Card.Section>
-    <Card.Section pt="xl" px={rem(50)}>
-        <Text size="xs" c="dimmed" mb="xs">ニックネーム</Text>
-        <TextInput size="md" variant="filled" required placeholder="10文字以内" {...form.getInputProps('name')}/>
-    </Card.Section>
-    <Card.Section py="xl" px={rem(50)}>
+    <Group bg="gray.1">
+    <Container size={420} w="100%" h="100vh">
+    <Center  h="100%">
+    <Card p="md" withBorder radius="md" w="100%">
+    <LoadingOverlay visible={sending} zIndex={1000} loaderProps={{ color: 'cyan' }} overlayProps={{ radius: "sm", blur: 2 }} />
+      <Card.Section pt="sm"  px={rem(50)}>
+        <Stack justify='center' gap={0} px="sm">
+          <Text c="dark.4" size="lg" fw="bold" ta="center" >アカウント情報</Text>
+        </Stack>
+      </Card.Section>
+
+      <Card.Section pt="xl" px={rem(50)}>
+      <Text size="xs" c="dimmed" mb="xs">ニックネーム</Text>
+        <TextInput size="md" required placeholder="10文字以内" {...form.getInputProps('name')}/>
+      </Card.Section>
+
+      <Card.Section py="xl" px={rem(50)}>
         <Text size="xs" c="dimmed" mb="xs">キャラクター</Text>
         <Group justify="space-around">
         <Carousel
@@ -100,16 +104,15 @@ export function UserRegistration({uuid}: any) {
         </Carousel>
             
         </Group>
-    </Card.Section>
-    
-    <Card.Section>
-    <Divider c="dark" w="100%" mt="lg" />
-      <Group justify='center' w="100%" py="sm">
-        <Button size="md" color="dark" radius="xl" variant="filled" type="submit">
-          <Text mx={rem(60)} size="lg" fw="bold">決定</Text>
-        </Button>
-      </Group>
-    </Card.Section>  
+      </Card.Section>
+      
+      <Card.Section bg="gray.0" mt="md">
+        <Group justify='center' w="100%" py="xl" px={rem(50)}>
+          <Button fullWidth size="md" color="dark" radius="md" variant="filled" type="submit">
+            <Text size="lg" fw="bold">決定</Text>
+          </Button>
+        </Group>
+      </Card.Section>
     </Card>
     </Center>
     </Container>

@@ -31,27 +31,26 @@ export function Login() {
   }
 
   return (
-    <Group bg="#F2F2F2">
+    <Group bg="gray.1">
     <Container size={420} w="100%" h="100vh">
     <Center  h="100%">
     <Card p="md" withBorder radius="md" w="100%">
     <LoadingOverlay visible={sending} zIndex={1000} loaderProps={{ color: 'cyan' }} overlayProps={{ radius: "sm", blur: 2 }} />
-      <Card.Section >
-        <Stack justify='center' gap={0} pb="sm" px="sm">
-          <Text c="dark" fw="bold" ta="center">ログイン</Text>
-          <Text c="dimmed"  size="xs" ta="center">ログインすることでルームに入室できるようになります</Text>
+      <Card.Section pt="sm" px={rem(50)}>
+        <Stack justify='center' gap={0} px="sm">
+          <Text c="dark.4" size="lg" fw="bold" ta="center" >ログイン</Text>
         </Stack>
-      <Divider c="dark" w="100%"/>
       </Card.Section>
 
-      <Card.Section py="xl" px={rem(50)} bg="gray.0">
-      <Button leftSection={<FcGoogle />} mb="xs" fullWidth variant="default" ><Text c="dark" size="sm" fw="bold">Googleで続ける</Text></Button>
-      <Button  onClick={()=>login()} leftSection={<FaUser />} fullWidth variant="default"><Text c="dark" size="sm" fw="bold">匿名で続ける</Text></Button>
+      <Card.Section py="xl" px={rem(50)}>
+      <Button disabled leftSection={<FcGoogle />} mb="xs" size="lg" fullWidth variant="default" ><Text c="dark.4" size="sm" fw="bold">Googleで続ける</Text></Button>
+      <Button  onClick={()=>login()} leftSection={<FaUser />} size="lg" fullWidth variant="default"><Text c="dark.4" size="sm" fw="bold">匿名で続ける</Text></Button>
       </Card.Section>
       
-      <Card.Section>
+      <Card.Section bg="gray.0">
       <Divider c="dark" w="100%" />
-        <Group justify='center' w="100%" py="md">
+        <Group justify='center' w="100%" py="md" px="xl">
+          <Text c="gray"  size={rem(10)} ta="center">本サイトではユーザー識別のためにのみログイン情報を使用しています．詳しくは プライバシーポリシー をご覧ください．</Text>
         </Group>
       </Card.Section>  
     </Card>
